@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.seencxy/solvehub-mcp",
+  "title": "SolveHub",
+  "description": "CAPTCHA and anti-bot solving for Turnstile, DataDome, Akamai, PerimeterX and Imperva.",
+  "version": "0.1.0",
+  "websiteUrl": "https://www.tiam.codes",
+  "repository": {
+    "url": "https://github.com/seencxy/solvehub-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/seencxy/solvehub-mcp:0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SOLVEHUB_API_KEY",
+          "description": "SolveHub console API key",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "SOLVEHUB_BASE_URL",
+          "description": "Override the API base URL",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}
