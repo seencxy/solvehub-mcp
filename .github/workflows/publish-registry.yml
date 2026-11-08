@@ -8,6 +8,9 @@ on:
       - .github/workflows/publish-registry.yml
   workflow_dispatch:
 
+env:
+  MCP_PUBLISHER_VERSION: v1.8.8
+
 jobs:
   registry:
     runs-on: ubuntu-latest
@@ -22,10 +25,11 @@ jobs:
           set -euo pipefail
           os="$(uname -s | tr '[:upper:]' '[:lower:]')"
           arch="$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')"
-          version="$(curl -fsSL https://api.github.com/repos/modelcontextprotocol/registry/releases/latest | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)"
-          echo "mcp-publisher ${version}"
-          curl -fsSL -o mcp-publisher.tar.gz "https://github.com/modelcontextprotocol/registry/releases/download/${version}/mcp-publisher_${os}_${arch}.tar.gz"
-          tar xzf mcp-publisher.tar.gz mcp-publisher
+          archive="mcp-publisher_${os}_${arch}.tar.gz"
+          base="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base/$archive"
+          tar xzf "$archive" mcp-publisher
+          ./mcp-publisher --help | head -5
 
       - name: Authenticate with GitHub OIDC
         run: ./mcp-publisher login github-oidc
