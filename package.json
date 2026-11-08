@@ -1,0 +1,15 @@
+{
+  "name": "solvehub-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the SolveHub CAPTCHA API: Turnstile, DataDome, Akamai, PerimeterX, Imperva, AWS WAF, FunCaptcha and image OCR.",
+  "type": "module",
+  "bin": { "solvehub-mcp": "index.mjs" },
+  "main": "index.mjs",
+  "files": ["index.mjs", "src/", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node index.mjs", "test": "node --test test/" },
+  "keywords": ["mcp", "model-context-protocol", "captcha", "captcha-solver", "turnstile", "datadome", "akamai", "perimeterx", "imperva", "aws-waf", "funcaptcha", "ocr", "web-scraping", "claude"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/seencxy/solvehub-mcp.git" },
+  "homepage": "https://www.tiam.codes"
+}
