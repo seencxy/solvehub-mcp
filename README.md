@@ -67,6 +67,27 @@ cd solvehub-mcp
 SOLVEHUB_API_KEY=sh_live_xxx node index.mjs
 ```
 
+### Docker
+
+A public image is built from this repo on every push to `main`, so no local Node install is needed:
+
+```bash
+docker run -i --rm -e SOLVEHUB_API_KEY=sh_live_xxx ghcr.io/seencxy/solvehub-mcp:latest
+```
+
+Claude Desktop (or any stdio client) can launch the same image:
+
+```json
+{
+  "mcpServers": {
+    "solvehub": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "SOLVEHUB_API_KEY=sh_live_xxx", "ghcr.io/seencxy/solvehub-mcp:latest"]
+    }
+  }
+}
+```
+
 ## What it looks like in use
 
 > Solve the Cloudflare Turnstile on https://example.com/login. The site key is 0x4AAAAAAA...
