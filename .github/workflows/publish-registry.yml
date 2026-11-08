@@ -22,14 +22,16 @@ jobs:
 
       - name: Download mcp-publisher
         run: |
-          set -euo pipefail
+          set -uo pipefail
           os="$(uname -s | tr '[:upper:]' '[:lower:]')"
           arch="$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')"
           archive="mcp-publisher_${os}_${arch}.tar.gz"
           base="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
-          curl --fail --location --silent --show-error --output "$archive" "$base/$archive"
+          code="$(curl -sS --location --retry 5 --retry-all-errors --retry-delay 2 --output "$archive" --write-out '%{http_code}' "$base/$archive")"
+          echo "download status: $code"
+          if [ "$code" != "200" ]; then echo "::error::download of $base/$archive returned HTTP $code"; exit 1; fi
           tar xzf "$archive" mcp-publisher
-          ./mcp-publisher --help | head -5
+          chmod +x mcp-publisher
 
       - name: Authenticate with GitHub OIDC
         run: ./mcp-publisher login github-oidc
