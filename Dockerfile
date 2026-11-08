@@ -1,9 +1,12 @@
 FROM node:20-alpine
 
 WORKDIR /app
+
+# zero runtime dependencies: the server only uses Node built-ins
 COPY package.json index.mjs ./
+COPY src ./src
 
 USER node
 
-# stdio transport: keep stdin open, log to stderr only
+# stdio transport: log to stderr, never stdout
 ENTRYPOINT ["node", "index.mjs"]
