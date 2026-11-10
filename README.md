@@ -147,6 +147,7 @@ against a mocked HTTP layer, so they need no API key and no network.
 - [solvehub-python](https://github.com/seencxy/solvehub-python) - Python SDK, also dependency free
 - [solvehub-node](https://github.com/seencxy/solvehub-node) - Node SDK
 - [API documentation](https://www.tiam.codes/docs)
+- [Anti-bot cookie glossary](https://seencxy.github.io/glossary/) - what `_abck`, `reese84`, `_px3` and `cf_clearance` each contain, and why they expire. In English, 日本語 and Bahasa Indonesia.
 
 ## Legal
 
